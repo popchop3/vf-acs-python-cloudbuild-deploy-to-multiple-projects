@@ -10,8 +10,9 @@ steps:
       - --region=europe-west2
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-europe-west2-test
+      - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment
       - --runtime=python310
+      
         #MIGHT WANT TO SE BUILD VARIABLES SO I CAN USE HERE ALSO. CAN PARSE BUILD REGION THROUGH TO RUNTIME ALSO
 
 ##-----Below shows how you can add variables into a cloud build.yaml file - using "substitutions"----###https://www.cyberithub.com/deploy-a-container-to-multiple-gcp-projects-and-host-with-cloud-run/  step 5##
