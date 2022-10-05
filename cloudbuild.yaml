@@ -32,31 +32,31 @@ steps:
 ##--------------------------------------------------------------------------------------------------#####
 
 
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-asia-southeast2-test
-      - --set-env-vars=ENV=test,REGION=asia-southeast2
-      - --region=asia-southeast2
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-asia-southeast2-test
-      - --runtime=python310
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-asia-southeast2-test
+    #  - --set-env-vars=ENV=test,REGION=asia-southeast2
+    #  - --region=asia-southeast2
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-asia-southeast2-test
+    #  - --runtime=python310
       
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-      args:
-      - gcloud
-      - functions
-      - deploy
-      - vf-acs-func-us-west1-test
-      - --set-env-vars=ENV=test,REGION=us-west1
-      - --region=us-west1
-      - --source=.
-      - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-us-west1-test
-      - --runtime=python310
+    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    #  args:
+    #  - gcloud
+    #  - functions
+    #  - deploy
+    #  - vf-acs-func-us-west1-test
+    #  - --set-env-vars=ENV=test,REGION=us-west1
+    #  - --region=us-west1
+    #  - --source=.
+    #  - --entry-point=myBackgroundFunction
+    #  - --trigger-bucket=vf-us-west1-test
+    #  - --runtime=python310
 
 
       #env:
