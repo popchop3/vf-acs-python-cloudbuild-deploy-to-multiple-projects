@@ -8,11 +8,21 @@ steps:
       - vf-acs-func-europe-west2-test
       - --set-env-vars=ENV=test,REGION=europe-west2
       - --region=europe-west2
-      - --source=.
+      - --source=https://github.com/popchop3/vf-acs-python-cloudbuild-deploy-to-multiple-projects.git
       - --entry-point=myBackgroundFunction
       - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment
       - --runtime=python310
-      
+substitutions:
+_PROJECT1: t-system-364610
+_PROJECT2: project-2-364610
+_PROJECT3: project-3-364610
+_REGION1: asia-southeast2
+_REGION2: europe-west2
+_REGION3: us-west1
+
+
+
+
         #MIGHT WANT TO SE BUILD VARIABLES SO I CAN USE HERE ALSO. CAN PARSE BUILD REGION THROUGH TO RUNTIME ALSO
 
 ##-----Below shows how you can add variables into a cloud build.yaml file - using "substitutions"----###https://www.cyberithub.com/deploy-a-container-to-multiple-gcp-projects-and-host-with-cloud-run/  step 5##
@@ -22,15 +32,8 @@ steps:
 #images:
 #- 'gcr.io/${_ANPROJECT}/${_CONTAINERNAME}/${_VERSION}'
 
-#substitutions:
-#_PROJECT: sample-project-308612
-#_ANPROJECT: another-sample-project-311309
-#_REPO_NAME: sample-project-repo
-#_CONTAINERNAME: sample-container
-#_VERSION: '1.1
-##
-##
-##--------------------------------------------------------------------------------------------------#####
+
+
 
 
     #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
