@@ -1,18 +1,18 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
-    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    - name: 'gcr.io/cloud-builders/gcloud'
       args: ['gcloud config set project t-system-364610'] #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-europe-west2-test
-      - --set-env-vars=ENV=test,REGION=europe-west2
-      - --region=europe-west2
+      - vf-acs-func-asia-southeast2-test
+      - --set-env-vars=ENV=test,REGION=asia-southeast2 #this is the project 1 
+      - --region=asia-southeast2
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment
+      - --trigger-bucket=vf-asia-southeast2-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
       - --runtime=python310
 #substitutions:
 #_PROJECT1: t-system-364610
