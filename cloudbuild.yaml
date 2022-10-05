@@ -1,6 +1,6 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
-    - name: 'gcr.io/cloud-builders/gcloud'
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args:
       - gcloud
       - functions
