@@ -1,7 +1,12 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
-    - name: 'gcr.io/cloud-builders/gcloud'
-      args: ['gcloud config set project t-system-364610'] #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - config
+      - set
+      - project
+      - t-system-364610 #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
