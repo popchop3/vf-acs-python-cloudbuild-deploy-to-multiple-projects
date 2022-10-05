@@ -1,0 +1,15 @@
+SYSTEMS:
+    source: "vf"
+    target: "acs"
+
+GCPPROJECT: "inspired-bus-362513"
+
+CLOUDSTORAGE:
+    inputfolder: 'Input/'
+    archivefolder: 'Archive/'
+    failurefolder: 'Failure/'
+    
+ACS:
+    testurl: "https://httpbin.org/post"
+    produrl:
+

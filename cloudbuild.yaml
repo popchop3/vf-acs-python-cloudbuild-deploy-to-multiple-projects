@@ -1,0 +1,64 @@
+######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
+steps:
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args:
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-europe-west2-test
+      - --set-env-vars=ENV=test,REGION=europe-west2
+      - --region=europe-west2
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-europe-west2-test
+      - --runtime=python310
+        #MIGHT WANT TO SE BUILD VARIABLES SO I CAN USE HERE ALSO. CAN PARSE BUILD REGION THROUGH TO RUNTIME ALSO
+
+##-----Below shows how you can add variables into a cloud build.yaml file - using "substitutions"----###https://www.cyberithub.com/deploy-a-container-to-multiple-gcp-projects-and-host-with-cloud-run/  step 5##
+##- name: 'gcr.io/cloud-builders/gcloud'
+#steps:
+#args: ['run','deploy','demo-service','--image','gcr.io/${_ANPROJECT}/${_CONTAINERNAME}/${_VERSION}','--region','us-east1','--platform','managed']
+#images:
+#- 'gcr.io/${_ANPROJECT}/${_CONTAINERNAME}/${_VERSION}'
+
+#substitutions:
+#_PROJECT: sample-project-308612
+#_ANPROJECT: another-sample-project-311309
+#_REPO_NAME: sample-project-repo
+#_CONTAINERNAME: sample-container
+#_VERSION: '1.1
+##
+##
+##--------------------------------------------------------------------------------------------------#####
+
+
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args:
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-asia-southeast2-test
+      - --set-env-vars=ENV=test,REGION=asia-southeast2
+      - --region=asia-southeast2
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-asia-southeast2-test
+      - --runtime=python310
+      
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args:
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-us-west1-test
+      - --set-env-vars=ENV=test,REGION=us-west1
+      - --region=us-west1
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-us-west1-test
+      - --runtime=python310
+
+
+      #env:
+      #- 'ENVIRONMENT=test'
+      #- 'REGION=europe-west2'
