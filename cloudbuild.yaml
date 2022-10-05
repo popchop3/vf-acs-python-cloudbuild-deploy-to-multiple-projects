@@ -1,5 +1,6 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
+    #-----------asia-southeast2 region---------#
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
@@ -18,6 +19,48 @@ steps:
       - --source=.
       - --entry-point=myBackgroundFunction
       - --trigger-bucket=vf-asia-southeast2-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
+      - --runtime=python310
+
+      #-----------us-west1 region---------#
+      - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - config
+      - set
+      - project
+      - project-3-364610 #setting as project 3, as this cloud build trigger is running on PROJECT2 right now
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-us-west1-test
+      - --set-env-vars=ENV=test,REGION=us-west1 #this is the project 3
+      - --region=us-west1
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-us-west1-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
+      - --runtime=python310
+
+      #-----------europe-west2 region---------#
+      - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - config
+      - set
+      - project
+      - project-2-364610 #setting as project 2, as this cloud build trigger is running on PROJECT3 right now due to previous step
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-europe-west2-test
+      - --set-env-vars=ENV=test,REGION=europe-west2 #this is the project 2 
+      - --region=europe-west2
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
       - --runtime=python310
 #substitutions:
 #_PROJECT1: t-system-364610
@@ -39,35 +82,6 @@ steps:
 #images:
 #- 'gcr.io/${_ANPROJECT}/${_CONTAINERNAME}/${_VERSION}'
 
-
-
-
-
-    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args:
-    #  - gcloud
-    #  - functions
-    #  - deploy
-    #  - vf-acs-func-asia-southeast2-test
-    #  - --set-env-vars=ENV=test,REGION=asia-southeast2
-    #  - --region=asia-southeast2
-    #  - --source=.
-    #  - --entry-point=myBackgroundFunction
-    #  - --trigger-bucket=vf-asia-southeast2-test
-    #  - --runtime=python310
-      
-    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args:
-    #  - gcloud
-    #  - functions
-    #  - deploy
-    #  - vf-acs-func-us-west1-test
-    #  - --set-env-vars=ENV=test,REGION=us-west1
-    #  - --region=us-west1
-    #  - --source=.
-    #  - --entry-point=myBackgroundFunction
-    #  - --trigger-bucket=vf-us-west1-test
-    #  - --runtime=python310
 
 
       #env:
