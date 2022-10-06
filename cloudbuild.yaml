@@ -7,7 +7,7 @@ steps:
       - config
       - set
       - project
-      - t-system-364610 #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
+      - ${_PROJECT1} #t-system-364610 #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
@@ -20,6 +20,7 @@ steps:
       - --entry-point=myBackgroundFunction
       - --trigger-bucket=vf-asia-southeast2-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
       - --runtime=python310
+
     #-----------us-west1 region---------#
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
@@ -61,8 +62,9 @@ steps:
       - --entry-point=myBackgroundFunction
       - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
       - --runtime=python310
-#substitutions:
-#_PROJECT1: t-system-364610
+
+substitutions:
+_PROJECT1: t-system-364610
 #_PROJECT2: project-2-364610
 #_PROJECT3: project-3-364610
 #_REGION1: asia-southeast2
