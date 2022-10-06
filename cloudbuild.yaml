@@ -1,4 +1,7 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
+
+substitutions:
+  _PROJECT1: t-system-364610
 steps:
       #-----------asia-southeast2 region---------#
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -63,8 +66,7 @@ steps:
       - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
       - --runtime=python310
 
-substitutions:
-_PROJECT1: t-system-364610
+
 #_PROJECT2: project-2-364610
 #_PROJECT3: project-3-364610
 #_REGION1: asia-southeast2
