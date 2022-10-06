@@ -41,29 +41,26 @@ steps:
       - --trigger-bucket=vf-us-west1-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
       - --runtime=python310
 
-
-      
-
-    #  #-----------europe-west2 region---------#
-    #  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args: 
-    #  - gcloud
-    #  - config
-    #  - set
-    #  - project
-    #  - project-2-364610 #setting as project 2, as this cloud build trigger is running on PROJECT3 right now due to previous step
-    #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    #  args: 
-    #  - gcloud
-    #  - functions
-    #  - deploy
-    #  - vf-acs-func-europe-west2-test
-    #  - --set-env-vars=ENV=test,REGION=europe-west2 #this is the project 2 
-    #  - --region=europe-west2
-    #  - --source=.
-    #  - --entry-point=myBackgroundFunction
-    #  - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
-    #  - --runtime=python310
+      #-----------europe-west2 region---------#
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - config
+      - set
+      - project
+      - project-2-364610 #setting as project 2, as this cloud build trigger is running on PROJECT3 right now due to previous step
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-europe-west2-test
+      - --set-env-vars=ENV=test,REGION=europe-west2 #this is the project 2 
+      - --region=europe-west2
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
+      - --runtime=python310
 #substitutions:
 #_PROJECT1: t-system-364610
 #_PROJECT2: project-2-364610
