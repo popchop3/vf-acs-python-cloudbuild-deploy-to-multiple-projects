@@ -1,7 +1,11 @@
-######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
-
 substitutions:
   _PROJECT1: t-system-364610
+  _PROJECT2: project-2-364610
+  _PROJECT3: project-3-364610
+  _REGION1: asia-southeast2
+  _REGION2: europe-west2
+  _REGION3: us-west1
+
 steps:
       #-----------asia-southeast2 region---------#
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -16,12 +20,12 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-asia-southeast2-test
-      - --set-env-vars=ENV=test,REGION=asia-southeast2 #this is the project 1 
-      - --region=asia-southeast2
+      - vf-acs-func-${_REGION1}-test
+      - --set-env-vars=ENV=test,REGION=${_REGION1} #this is the project 1 
+      - --region=${_REGION1}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-asia-southeast2-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
+      - --trigger-bucket=vf-${_REGION1}-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
       - --runtime=python310
 
     #-----------us-west1 region---------#
@@ -31,18 +35,18 @@ steps:
       - config
       - set
       - project
-      - project-3-364610 #setting as project 3, as this cloud build trigger is running on PROJECT2 right now
+      - ${_PROJECT3} #setting as project 3, as this cloud build trigger is running on PROJECT2 right now
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-us-west1-test
-      - --set-env-vars=ENV=test,REGION=us-west1 #this is the project 3
-      - --region=us-west1
+      - vf-acs-func-${_REGION3}-test
+      - --set-env-vars=ENV=test,REGION=${_REGION3} #this is the project 3
+      - --region=${_REGION3}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-us-west1-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
+      - --trigger-bucket=vf-${_REGION3}-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
       - --runtime=python310
 
       #-----------europe-west2 region---------#
@@ -52,18 +56,18 @@ steps:
       - config
       - set
       - project
-      - project-2-364610 #setting as project 2, as this cloud build trigger is running on PROJECT3 right now due to previous step
+      - ${_PROJECT2} #setting as project 2, as this cloud build trigger is running on PROJECT3 right now due to previous step
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-europe-west2-test
-      - --set-env-vars=ENV=test,REGION=europe-west2 #this is the project 2 
-      - --region=europe-west2
+      - vf-acs-func-${_REGION2}-test
+      - --set-env-vars=ENV=test,REGION=${_REGION2} #this is the project 2 
+      - --region=${_REGION2}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-europe-west2-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
+      - --trigger-bucket=vf-${_REGION2}-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
       - --runtime=python310
 
 
