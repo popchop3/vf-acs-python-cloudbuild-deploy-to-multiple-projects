@@ -1,25 +1,25 @@
 ######SEE IF YOU CAN ADD LOCAL VARIABLES HERE
 steps:
     #-----------us-west1 region---------#
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args: 
-    - gcloud
-    - config
-    - set
-    - project
-    - project-3-364610 #setting as project 3, as this cloud build trigger is running on PROJECT2 right now
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    args: 
-    - gcloud
-    - functions
-    - deploy
-    - vf-acs-func-us-west1-test
-    - --set-env-vars=ENV=test,REGION=us-west1 #this is the project 3
-    - --region=us-west1
-    - --source=.
-    - --entry-point=myBackgroundFunction
-    - --trigger-bucket=vf-us-west1-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
-    - --runtime=python310
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - config
+      - set
+      - project
+      - project-3-364610 #setting as project 3, as this cloud build trigger is running on PROJECT2 right now
+    - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+      args: 
+      - gcloud
+      - functions
+      - deploy
+      - vf-acs-func-us-west1-test
+      - --set-env-vars=ENV=test,REGION=us-west1 #this is the project 3
+      - --region=us-west1
+      - --source=.
+      - --entry-point=myBackgroundFunction
+      - --trigger-bucket=vf-us-west1-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
+      - --runtime=python310
 
     #-----------asia-southeast2 region---------#
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
