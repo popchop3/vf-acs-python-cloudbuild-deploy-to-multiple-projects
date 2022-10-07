@@ -5,6 +5,7 @@ substitutions:
   _REGION1: asia-southeast2
   _REGION2: europe-west2
   _REGION3: us-west1
+  _ENV: test
 
 steps:
       #-----------asia-southeast2 region---------#
@@ -20,12 +21,12 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-${_REGION1}-test
-      - --set-env-vars=ENV=test,REGION=${_REGION1} #this is the project 1 
+      - vf-acs-func-${_REGION1}-${_ENV}
+      - --set-env-vars=ENV=${_ENV},REGION=${_REGION1} #this is the project 1 
       - --region=${_REGION1}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-${_REGION1}-test-cloudbuildmultiprojectdeployment #This is the project 1 bucket
+      - --trigger-bucket=vf-${_REGION1}-${_ENV}-cloudbuildmultiprojectdeployment #This is the project 1 bucket
       - --runtime=python310
 
     #-----------us-west1 region---------#
@@ -41,12 +42,12 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-${_REGION3}-test
-      - --set-env-vars=ENV=test,REGION=${_REGION3} #this is the project 3
+      - vf-acs-func-${_REGION3}-${_ENV}
+      - --set-env-vars=ENV=${_ENV},REGION=${_REGION3} #this is the project 3
       - --region=${_REGION3}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-${_REGION3}-test-cloudbuildmultiprojectdeployment #This is the project 3 bucket
+      - --trigger-bucket=vf-${_REGION3}-${_ENV}-cloudbuildmultiprojectdeployment #This is the project 3 bucket
       - --runtime=python310
 
       #-----------europe-west2 region---------#
@@ -62,12 +63,12 @@ steps:
       - gcloud
       - functions
       - deploy
-      - vf-acs-func-${_REGION2}-test
-      - --set-env-vars=ENV=test,REGION=${_REGION2} #this is the project 2 
+      - vf-acs-func-${_REGION2}-${_ENV}
+      - --set-env-vars=ENV=${_ENV},REGION=${_REGION2} #this is the project 2 
       - --region=${_REGION2}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=vf-${_REGION2}-test-cloudbuildmultiprojectdeployment #This is the project 2 bucket
+      - --trigger-bucket=vf-${_REGION2}-${_ENV}-cloudbuildmultiprojectdeployment #This is the project 2 bucket
       - --runtime=python310
 
 
@@ -92,5 +93,5 @@ steps:
 
 
       #env:
-      #- 'ENVIRONMENT=test'
+      #- 'ENVIRONMENT=${_ENV}'
       #- 'REGION=europe-west2'
