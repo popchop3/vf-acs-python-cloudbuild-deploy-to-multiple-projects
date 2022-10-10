@@ -15,7 +15,7 @@ steps:
       - config
       - set
       - project
-      - ${_PROJECT1} #t-system-364610 #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
+      - ${_PROJECT1} #setting as project 1, as this cloud build trigger is running on PROJECT2 right now
     - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
       args: 
       - gcloud
