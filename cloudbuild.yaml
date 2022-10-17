@@ -26,7 +26,7 @@ steps:
       - --region=${_REGION1}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=ul-vf-${_REGION1}-${_ENV}-terraform-demo #This is the project 1 bucket
+      - --trigger-bucket=ul-vf-${_REGION1}-${_ENV}-terraform #This is the project 1 bucket
       - --runtime=python310
 
     #-----------us-west1 region---------#
@@ -47,7 +47,7 @@ steps:
       - --region=${_REGION3}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=ul-vf-${_REGION3}-${_ENV}-terraform-demo #This is the project 3 bucket
+      - --trigger-bucket=ul-vf-${_REGION3}-${_ENV}-terraform #This is the project 3 bucket
       - --runtime=python310
 
       #-----------europe-west2 region---------#
@@ -68,7 +68,7 @@ steps:
       - --region=${_REGION2}
       - --source=.
       - --entry-point=myBackgroundFunction
-      - --trigger-bucket=ul-vf-${_REGION2}-${_ENV}-terraform-demo #This is the project 2 bucket
+      - --trigger-bucket=ul-vf-${_REGION2}-${_ENV}-terraform #This is the project 2 bucket
       - --runtime=python310
 
 
