@@ -141,7 +141,7 @@ def main(config):
     #os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = f'{config["FILE"]["localdirectoryforcodeandfiles"]}{config["CLOUDSTORAGE"]["credentialkeyjsonpath"]}'
     print("BEFORE GOOGLE APP CREDENTIAL")
     print("THIS IS A CUSTOM LOG - HOPE YOU CAN SEE ON CLOUD FUNCTIONS LOGS")
-    bucket_name = f'{config["SYSTEMS"]["source"]}-{REGION}-{ENV}-cloudbuildmultiprojectdeployment'
+    bucket_name = f'ul-{config["SYSTEMS"]["source"]}-buc-{REGION}-{ENV}-terraform-demo'
     print(f'BucketName: {bucket_name}')
     print("2")
     storage_client = connectToStorageBucket(bucket_name, config)
